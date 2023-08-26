@@ -7,6 +7,14 @@ document.getElementById("highestRating").addEventListener("click", () => {
   displayTopProducts();
 })
 
+document.getElementById("distinctCategories").addEventListener("click", () => {
+  distinctCategories();
+})
+
+document.getElementById("averagePR").addEventListener("click", () => {
+  averagePR();
+})
+
 // FUNCTION FOR LISTING ALL PRODUCTS WITH ABOVE AVERAGE PRICE
 const aboveAverage = async () => {
   try {
@@ -110,3 +118,70 @@ const displayTopProducts = async () => {
   document.getElementById("topProductsList").innerHTML = table;
 };
       /* ********************************************************************** */
+// FUNCTION FOR LISTING ALL DISTINCT CATEGORIES
+const distinctCategories = async () => {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const products = await response.json();
+
+    const categoriesSet = new Set();
+    products.forEach(product => {
+      categoriesSet.add(product.category);
+    });
+
+    let table = `
+      <table>
+        <thead>
+          <tr><th>All the Distinct Categories</th></tr>
+          <tr>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+    `;
+
+    categoriesSet.forEach(category => {
+      table += `
+        <tr>
+          <td>${category}</td>
+        </tr>
+      `;
+    });
+
+    table += `
+        </tbody>
+      </table>
+    `;
+
+    document.getElementById("allCategories").innerHTML = table;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+      /* **************************************************************** */
+// FUNCTOIN TO PRINT THE AVERAGE PRICE AND RATING OF THE PRODUCTS.
+const averagePR = async () => {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const products = await response.json();
+
+    const averagePrice =
+      products.reduce((sum, product) => sum + product.price, 0) / products.length;
+
+    const totalRatings = products.reduce((sum, product) => sum + product.rating.rate, 0);
+    const averageRating = totalRatings / products.length;
+
+    let table = `
+      <table>
+        <thead>
+          <tr><th>Average Price: ${averagePrice.toFixed(2)}</th></tr>
+          <tr><th>Average Rating: ${averageRating.toFixed(2)}</th></tr>
+        </thead>
+      </table>
+    `;
+
+    document.getElementById("aPriceRating").innerHTML = table;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
