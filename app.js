@@ -20,7 +20,6 @@ document.getElementById("lowestPrice").addEventListener("click", () => {
 })
 
 document.getElementById("userList").addEventListener("click", () => {
-  // userList();
   userList();
 })
 
@@ -69,9 +68,9 @@ const aboveAverage = async () => {
     console.error("Error fetching data:", error);
   }
 };
-       /* ******************************************************************** */
+/* ******************************************************************** */
 
-// FUNCTION FOR LISTING THE TOP 5 PRODUCTS WITH HIGHEST RATING
+// FUNCTIONS FOR LISTING THE TOP 5 PRODUCTS WITH HIGHEST RATING
 const highestRating = async () => {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
@@ -126,7 +125,7 @@ const displayTopProducts = async () => {
 
   document.getElementById("topProductsList").innerHTML = table;
 };
-      /* ********************************************************************** */
+/* ********************************************************************** */
 // FUNCTION FOR LISTING ALL DISTINCT CATEGORIES
 const distinctCategories = async () => {
   try {
@@ -167,7 +166,7 @@ const distinctCategories = async () => {
     console.error("Error fetching data:", error);
   }
 };
-      /* ********************************************************************** */
+/* ********************************************************************** */
 // FUNCTION TO PRINT THE AVERAGE PRICE AND RATING OF THE PRODUCTS.
 const averagePR = async () => {
   try {
@@ -186,8 +185,8 @@ const averagePR = async () => {
         <tr>
           <th colspan="5">The average price and rating of the products.</th>
         </tr>
-          <tr><th>Average Price: ${averagePrice.toFixed(2)}</th></tr>
-          <tr><th>Average Rating: ${averageRating.toFixed(2)}</th></tr>
+          <tr><td><strong>Average Price:</strong> ${averagePrice.toFixed(2)}</td></tr>
+          <tr><td><strong>Average Rating:</strong> ${averageRating.toFixed(2)}</td></tr>
         </thead>
       </table>
     `;
@@ -197,7 +196,7 @@ const averagePR = async () => {
     console.error("Error fetching data:", error);
   }
 };
-       /* ******************************************************************** */
+/* ******************************************************************** */
 // FUNCTION TO LIST THE TOP 5 PRODUCTS WITH HIGHEST RATING AND LOWEST PRICE
 const lowestPrice = async () => {
   try {
@@ -261,8 +260,8 @@ const displayLowPriceP = async () => {
 
   document.getElementById("topLowestList").innerHTML = table;
 };
-      /* ********************************************************************** */
-// FUNCTION TO LIST USER'S NAME, EMAIL, CITY, ALONG WITH THEIR PURCHACED PRODUCT'S NAMES, PRICES, AND TOTAL BILL.
+/* ********************************************************************** */
+// FUNCTIONS TO LIST USER'S NAME, EMAIL, CITY, ALONG WITH THEIR PURCHACED PRODUCT'S NAMES, PRICES, AND TOTAL BILL.
 const fetchUsers = async () => {
   try {
     const response = await fetch('https://fakestoreapi.com/users');

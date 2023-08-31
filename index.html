@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
   <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 
   <title>FakeStoreAPI Insights</title>
 </head>
+
 <body>
-  <button id="aboveAverage" class="btn btn-primary m-5">Above Average</button>
-  <div id="highPriceProducts"></div>
 
-  <button id="highestRating" class="btn btn-primary m-5">Highest Rating</button>
-  <div id="topProductsList"></div>
+  <header class="text-bg-info text-dark text-center py-3">
+    <h1 class="font-weight-bold">Fake store API Insights</h1>
+  </header>
 
-  <button id="distinctCategories" class="btn btn-primary m-5">Distinct Categories</button>
-  <div id="allCategories"></div>
+  <div class="p-3 bg-primary-subtle">
 
-  <button id="averagePR" class="btn btn-primary m-5">Price & Rating</button>
-  <div id="aPriceRating"></div>
+    <h5 class="mt-2 text-secondary">All the products with above average price</h5>
+    <button id="aboveAverage" class="btn btn-info text-dark ml-5 fixed-width-btn">Above Average</button>
+    <div id="highPriceProducts" class="mb-4"></div>
 
-  <button id="lowestPrice" class="btn btn-primary m-5">Lowest Price</button>
-  <div id="topLowestList"></div>
+    <h5 class="mt-5 text-secondary">The top 5 products with the highest rating</h5>
+    <button id="highestRating" class="btn btn-info text-dark fixed-width-btn">Highest Rating</button>
+    <div id="topProductsList" class="mb-4"></div>
 
-  <button id="userList" class="btn btn-primary m-5">User's List</button>
-  <ul id="userDataList"></ul>
+    <h5 class="mt-5 text-secondary">All distinct categories</h5>
+    <button id="distinctCategories" class="btn btn-info text-dark fixed-width-btn">Categories</button>
+    <div id="allCategories" class="mb-4"></div>
+
+    <h5 class="mt-5 text-secondary">The average price and rating of the product</h5>
+    <button id="averagePR" class="btn btn-info text-dark fixed-width-btn">Price & Rating</button>
+    <div id="aPriceRating" class="mb-4"></div>
+
+    <h5 class="mt-5 text-secondary">The top 5 products with the highest rating and the lowest price</h5>
+    <button id="lowestPrice" class="btn btn-info text-dark fixed-width-btn">Lowest Price</button>
+    <div id="topLowestList" class="mb-4"></div>
+
+    <h5 class="mt-5 text-secondary">List with User's Name, Email, City, along with their purchased product's names, prices, and total bill</h5>
+    <button id="userList" class="btn btn-info text-dark fixed-width-btn">User's List</button>
+    <ul id="userDataList" class="mb-4"></ul>
+  </div>
 
   <script src="app.js"></script>
 </body>
+
 </html>
