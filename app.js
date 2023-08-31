@@ -15,6 +15,10 @@ document.getElementById("averagePR").addEventListener("click", () => {
   averagePR();
 })
 
+document.getElementById("lowestPrice").addEventListener("click", () => {
+  displayLowPriceP();
+})
+
 // FUNCTION FOR LISTING ALL PRODUCTS WITH ABOVE AVERAGE PRICE
 const aboveAverage = async () => {
   try {
@@ -159,7 +163,7 @@ const distinctCategories = async () => {
   }
 };
       /* **************************************************************** */
-// FUNCTOIN TO PRINT THE AVERAGE PRICE AND RATING OF THE PRODUCTS.
+// FUNCTION TO PRINT THE AVERAGE PRICE AND RATING OF THE PRODUCTS.
 const averagePR = async () => {
   try {
     const response = await fetch("https://fakestoreapi.com/products");
@@ -174,6 +178,9 @@ const averagePR = async () => {
     let table = `
       <table>
         <thead>
+        <tr>
+          <th colspan="5">The average price and rating of the products.</th>
+        </tr>
           <tr><th>Average Price: ${averagePrice.toFixed(2)}</th></tr>
           <tr><th>Average Rating: ${averageRating.toFixed(2)}</th></tr>
         </thead>
@@ -184,4 +191,68 @@ const averagePR = async () => {
   } catch (error) {
     console.error("Error fetching data:", error);
   }
+};
+       /* ****************************************************** */
+// FUNCTION TO LIST THE TOP 5 PRODUCTS WITH HIGHEST RATING AND LOWEST PRICE
+const lowestPrice = async () => {
+  try {
+    const response = await fetch("https://fakestoreapi.com/products");
+    const products = await response.json();
+
+    // Sort the products by rating in descending order and then by price in ascending order
+    const sortedProducts = products.sort((a, b) => {
+      if (b.rating.rate !== a.rating.rate) {
+        return b.rating.rate - a.rating.rate;
+      } else {
+        return a.price - b.price; // Sort by price in ascending order if ratings are the same
+      }
+    });
+
+    // Get the top 5 products with the highest rating and lowest price
+    const low5Products = sortedProducts.slice(0, 5);
+
+    return low5Products;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
+};
+
+const displayLowPriceP = async () => {
+  const lowPriceP = await lowestPrice();
+
+  let table = `
+    <table>
+      <thead>
+        <tr>
+          <th colspan="5">The top 5 products with the highest rating and lowest price</th>
+        </tr>
+        <tr>
+          <th>ID</th>
+          <th>Title</th>
+          <th>Price</th>
+          <th>Rating</th>
+          <th>Image</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  lowPriceP.forEach(product => {
+    table += `
+      <tr>
+        <td>${product.id}</td>
+        <td>${product.title}</td>
+        <td>${product.price}</td>
+        <td>${product.rating.rate} (${product.rating.count} reviews)</td>
+        <td><img src="${product.image}" alt="${product.title}" width="70"></td>
+      </tr>
+    `;
+  });
+
+  table += `
+      </tbody>
+    </table>
+  `;
+
+  document.getElementById("topLowestList").innerHTML = table;
 };
