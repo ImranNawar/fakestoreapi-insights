@@ -34,7 +34,6 @@ const aboveAverage = async () => {
     let table = `
       <table>
         <thead>
-          <tr><th>All the Products with above average price. </th></tr>
           <tr>
             <th>ID</th>
             <th>Title</th>
@@ -94,7 +93,6 @@ const displayTopProducts = async () => {
   let table = `
     <table>
       <thead>
-      <tr><th>The top 5 products with the highest rating. </th></tr>
         <tr>
           <th>ID</th>
           <th>Title</th>
@@ -140,7 +138,6 @@ const distinctCategories = async () => {
     let table = `
       <table>
         <thead>
-          <tr><th>All the Distinct Categories</th></tr>
           <tr>
             <th>Category</th>
           </tr>
@@ -182,9 +179,6 @@ const averagePR = async () => {
     let table = `
       <table>
         <thead>
-        <tr>
-          <th colspan="5">The average price and rating of the products.</th>
-        </tr>
           <tr><td><strong>Average Price:</strong> ${averagePrice.toFixed(2)}</td></tr>
           <tr><td><strong>Average Rating:</strong> ${averageRating.toFixed(2)}</td></tr>
         </thead>
@@ -227,9 +221,6 @@ const displayLowPriceP = async () => {
   let table = `
     <table>
       <thead>
-        <tr>
-          <th colspan="5">The top 5 products with the highest rating and lowest price</th>
-        </tr>
         <tr>
           <th>ID</th>
           <th>Title</th>
