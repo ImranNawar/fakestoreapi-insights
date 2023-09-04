@@ -32,13 +32,13 @@ const aboveAverage = async () => {
     const averagePrice = products.reduce((sum, product) => sum + product.price, 0) / products.length;
 
     let table = `
-      <table>
+      <table class="table mt-3">
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>Image</th>
+            <th class="text-bg-secondary">ID</th>
+            <th class="text-bg-secondary">Title</th>
+            <th class="text-bg-secondary">Price</th>
+            <th class="text-bg-secondary">Image</th>
           </tr>
         </thead>
         <tbody>
@@ -91,14 +91,14 @@ const displayTopProducts = async () => {
   const topProducts = await highestRating();
 
   let table = `
-    <table>
+    <table class="table mt-3">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Rating</th>
-          <th>Image</th>
+          <th class="text-bg-secondary">ID</th>
+          <th class="text-bg-secondary">Title</th>
+          <th class="text-bg-secondary">Price</th>
+          <th class="text-bg-secondary">Rating</th>
+          <th class="text-bg-secondary">Image</th>
         </tr>
       </thead>
       <tbody>
@@ -136,10 +136,10 @@ const distinctCategories = async () => {
     });
 
     let table = `
-      <table>
+      <table class="table mt-3">
         <thead>
           <tr>
-            <th>Category</th>
+            <th class="text-bg-secondary">Category</th>
           </tr>
         </thead>
         <tbody>
@@ -177,7 +177,7 @@ const averagePR = async () => {
     const averageRating = totalRatings / products.length;
 
     let table = `
-      <table>
+      <table class="table mt-3">
         <thead>
           <tr><td><strong>Average Price:</strong> ${averagePrice.toFixed(2)}</td></tr>
           <tr><td><strong>Average Rating:</strong> ${averageRating.toFixed(2)}</td></tr>
@@ -219,14 +219,14 @@ const displayLowPriceP = async () => {
   const lowPriceP = await lowestPrice();
 
   let table = `
-    <table>
+    <table class="table mt-3">
       <thead>
         <tr>
-          <th>ID</th>
-          <th>Title</th>
-          <th>Price</th>
-          <th>Rating</th>
-          <th>Image</th>
+          <th class="text-bg-secondary">ID</th>
+          <th class="text-bg-secondary">Title</th>
+          <th class="text-bg-secondary">Price</th>
+          <th class="text-bg-secondary">Rating</th>
+          <th class="text-bg-secondary">Image</th>
         </tr>
       </thead>
       <tbody>
@@ -282,22 +282,24 @@ const userList = async () => {
 
   users.forEach(user => {
     const userListItem = document.createElement('li');
+    userListItem.classList.add('list-group-item', 'rounded'); // Add Bootstrap list item class
+
     userListItem.innerHTML = `
-      <strong>Name:</strong> ${user.name.firstname} ${user.name.lastname} <br>
-      <strong>Email:</strong> ${user.email} <br>
-      <strong>City:</strong> ${user.address.city} <br>
+      <h5 class="mb-1 p-3 text-bg-secondary rounded">${user.name.firstname} ${user.name.lastname}</h5>
+      <p class="mb-1"><strong>Email:</strong> ${user.email}</p>
+      <p class="mb-1"><strong>City:</strong> ${user.address.city}</p>
     `;
 
     const userPurchases = products.filter(product => product.id <= user.id);
     let totalBill = 0;
     userPurchases.forEach(purchase => {
       userListItem.innerHTML += `
-        <strong>Product:</strong> ${purchase.title} <br>
-        <strong>Price:</strong> $${purchase.price} <br>
+        <p class="mb-0"><strong>Product:</strong> ${purchase.title}</p>
+        <p class="mb-0"><strong>Price:</strong> ${purchase.price}</p>
       `;
       totalBill += purchase.price;
     });
-    userListItem.innerHTML += `<strong>Total Bill:</strong> $${totalBill.toFixed(2)}`;
+    userListItem.innerHTML += `<p><strong>Total Bill:</strong> $${totalBill.toFixed(2)}</p>`;
 
     userListElement.appendChild(userListItem);
   });
