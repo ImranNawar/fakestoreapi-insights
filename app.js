@@ -179,8 +179,8 @@ const averagePR = async () => {
     let table = `
       <table class="table mt-3">
         <thead>
-          <tr><td><strong>Average Price:</strong> ${averagePrice.toFixed(2)}</td></tr>
-          <tr><td><strong>Average Rating:</strong> ${averageRating.toFixed(2)}</td></tr>
+          <tr><td><strong class="p-3">Average Price:</strong> ${averagePrice.toFixed(2)}</td></tr>
+          <tr><td><strong class="p-3">Average Rating:</strong> ${averageRating.toFixed(2)}</td></tr>
         </thead>
       </table>
     `;
